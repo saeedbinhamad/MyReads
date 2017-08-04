@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class WantToReadComponent extends Component {
@@ -15,14 +16,14 @@ class WantToReadComponent extends Component {
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                    {wantToReadBooks.map((book) => (
 
+                    {wantToReadBooks.map((book) => (
                       <li key={book.id}>
                         <div className="book">
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url('+ book.imageLinks.thumbnail + ')' }}></div>
                             <div className="book-shelf-changer">
-                              <select>
+                              <select onChange={(e) => BooksAPI.update(book, e.target.value)}>
                                 <option value="none" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>

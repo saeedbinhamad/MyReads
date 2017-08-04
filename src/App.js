@@ -6,7 +6,7 @@ import CurrentlyReadingComponent from './CurrentlyReadingComponent'
 import WantToReadComponent from './WantToReadComponent'
 import ReadComponent from './ReadComponent'
 import { Route } from 'react-router-dom'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class App extends React.Component {
     state = {
@@ -19,6 +19,13 @@ class App extends React.Component {
     })
   }
 
+  //TODO: still not finished
+  getBook() {
+    BooksAPI.get(this.state.books.id).then((book) => {
+      this.setState({ book })
+    })
+  }
+
 //TODO: idk what im doing here.
     searchBook(query, maxResults) {
       BooksAPI.search(query, maxResults).then(books => {
@@ -28,6 +35,9 @@ class App extends React.Component {
       })
     }
 
+
+    
+
   render() {
     return (
       <div className="app">
@@ -35,7 +45,9 @@ class App extends React.Component {
        
           <Route exact path="/"  render={() => (
             <div>
-              <CurrentlyReadingComponent books={this.state.books} />
+              <CurrentlyReadingComponent
+              books={this.state.books}
+              />
               <ReadComponent books={this.state.books}/>
               <WantToReadComponent books={this.state.books} />
             </div>
