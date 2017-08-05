@@ -12,7 +12,7 @@ body, .app {
 
 .list-books-title {
   padding: 10px 0;
-  background: #2e7c31;
+  background: #2b1b1b;
   text-align: center;
 }
 .list-books-title h1 {
@@ -48,12 +48,12 @@ body, .app {
   right: 25px;
   bottom: 25px;
 }
-.open-search {
+.open-search a {
   display: block;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #2e7d32;
+  background: #202224;
   background-image: url('./icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -75,12 +75,17 @@ body, .app {
 }
 .search-books-input-wrapper {
   flex: 1;
-  background: #e9e;
+  background: #ffffff;
 }
 .search-books-bar input {
   width: 100%;
+  margin-left: 50px;
   padding: 15px 10px;
   font-size: 1.25em;
+  background-image: url('./icons/search.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24px;
   border: none;
   outline: none;
 }
@@ -91,7 +96,10 @@ body, .app {
   left: 15px;
   width: 50px;
   height: 53px;
-  background: white;
+  margin: 2px;
+  color: white;
+  border-radius: 4px;
+  background: #bcc6cf;
   background-image: url('./icons/arrow-back.svg');
   background-position: center;
   background-repeat: no-repeat;
@@ -147,7 +155,7 @@ body, .app {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #60ac5d;
+  background: #486a88;
   background-image: url('./icons/arrow-drop-down.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -171,4 +179,23 @@ body, .app {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+.book-rating {
+  margin-top: 10px;
+  padding-left: 10px;
+  font-size: 12px;
+  color:#ffffff;
+  background: #8997a4;
+  border-radius: 10px;
+}
+
+.category-filter-top {
+  position: relative;
+  margin-bottom: 1%;
+  width: 100%;
+  top: 0;
+  border: 1px solid #d5d8df;
+  padding-top: 5px;
+  display: flex;
 }
