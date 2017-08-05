@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-//Backend
+// import the backend api
 import * as BooksAPI from './BooksAPI'
-//Style
+//import the styles
 import './App.css'
-//Routes
+//import the search route component
 import SearchPage from './Routes/SearchPage.js'
-//Components
+//import the header components
 import Header from './Components/MainPage/Header.js'
+//import the bookshelf components
 import BookShelf from './Components/MainPage/BookShelf.js'
 
 
@@ -25,7 +26,7 @@ class BooksApp extends Component {
     });
   }
 
-//for handling search input and syncing searchResults state of a book with the booksOnShelf state of the respective book
+//this function handles search input and syncs the searchResults state of a book with the booksOnShelf state of the respective book
   handleSearch = (query) => {
    if (query !== ' ') {
      BooksAPI
@@ -48,7 +49,7 @@ class BooksApp extends Component {
    }
   }
 
-  //for handling the onChange event in Books on BookShelf
+  //this function handles the onChange event in Books on a BookShelf
     handleChange = (bookToMove, shelfSelected) => {
       BooksAPI.update(bookToMove, shelfSelected)
         .then(() => {
@@ -62,7 +63,7 @@ class BooksApp extends Component {
         });
     }
 
-    //for handling the onChange event in Books on SearchPage, bit of repetition  from handleChange, but I'd rather have it DOT
+    //this function handles the onChange event in Books on the SearchPage.
     handleAddFromSearch = (bookToAdd, shelfSelected) => {
       BooksAPI.update(bookToAdd, shelfSelected)
         .then(() => {
