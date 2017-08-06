@@ -22,8 +22,8 @@ class BookShelf extends Component {
         <h2 className="bookshelf-title">{title}</h2>
         <div className="bookshelf-books">
           <Books
-            booksToShow = {booksOnShelf}
-            onChangeShelf= {onChangeShelf}
+            booksToShow={booksOnShelf}
+            onChangeShelf={onChangeShelf}
           />
         </div>
       </div>

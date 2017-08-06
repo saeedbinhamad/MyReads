@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Books from '../Components/MainPage/Books.js'
+import Books from '../Components/Books.js'
 
 
 class SearchPage extends Component {

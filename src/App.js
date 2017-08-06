@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-// import the backend api
 import * as BooksAPI from './BooksAPI'
-//import the styles
 import './App.css'
-//import the search route component
 import SearchPage from './Routes/SearchPage.js'
-//import the header components
-import Header from './Components/MainPage/Header.js'
-//import the bookshelf components
-import BookShelf from './Components/MainPage/BookShelf.js'
+import Header from './Components/Header.js'
+import BookShelf from './Components/BookShelf.js'
 
 
 class BooksApp extends Component {
 
-  state = {
+  state={
     booksOnShelf: [],
     searchResults: [],
   }
@@ -27,16 +22,16 @@ class BooksApp extends Component {
   }
 
 //this function handles search input and syncs the searchResults state of a book with the booksOnShelf state of the respective book
-  handleSearch = (query) => {
+  handleSearch=(query) => {
    if (query !== ' ') {
      BooksAPI
      .search(query.trim(), 10)
      .then((allSearchResults) => {
        if (allSearchResults && allSearchResults.length) {
-         const verifiedResults = allSearchResults.map((book) => {
+         const verifiedResults=allSearchResults.map((book) => {
            this.state.booksOnShelf.forEach((bookOnShelf) => {
-             if (book.id == bookOnShelf.id) {
-               book.shelf = bookOnShelf.shelf;
+             if (book.id === bookOnShelf.id) {
+               book.shelf=bookOnShelf.shelf;
              }
            });
            return book;
@@ -50,12 +45,12 @@ class BooksApp extends Component {
   }
 
   //this function handles the onChange event in Books on a BookShelf
-    handleChange = (bookToMove, shelfSelected) => {
+    handleChange=(bookToMove, shelfSelected) => {
       BooksAPI.update(bookToMove, shelfSelected)
         .then(() => {
           this.setState((state) => {
-            let newShelfState = state.booksOnShelf.map(book => {
-              book.id === bookToMove.id && (book.shelf = shelfSelected);
+            let newShelfState=state.booksOnShelf.map(book => {
+              book.id === bookToMove.id && (book.shelf=shelfSelected);
               return book;
             });
             return {booksOnShelf: newShelfState};
@@ -64,18 +59,18 @@ class BooksApp extends Component {
     }
 
     //this function handles the onChange event in Books on the SearchPage.
-    handleAddFromSearch = (bookToAdd, shelfSelected) => {
+    handleAddFromSearch=(bookToAdd, shelfSelected) => {
       BooksAPI.update(bookToAdd, shelfSelected)
         .then(() => {
           BooksAPI.get(bookToAdd.id)
           .then((bookRetrieved) => {
             this.setState((state) => {
-              let newShelfState = state.booksOnShelf.concat(bookRetrieved);
+              let newShelfState=state.booksOnShelf.concat(bookRetrieved);
               return {booksOnShelf: newShelfState}
             })
             this.setState((state) => {
-              let newSearchResults = state.searchResults.map(book => {
-                book.id === bookToAdd.id && (book.shelf = shelfSelected);
+              let newSearchResults=state.searchResults.map(book => {
+                book.id === bookToAdd.id && (book.shelf=shelfSelected);
                 return book;
               });
             });
@@ -87,7 +82,7 @@ class BooksApp extends Component {
 
   render() {
 
-    const { booksOnShelf, searchResults } = this.state
+    const { booksOnShelf, searchResults }=this.state
 
     return (
       <div className="app">
@@ -96,18 +91,18 @@ class BooksApp extends Component {
             <Header/>
             <div className="list-books-content">
                 <BookShelf
-                  title = "Currently Reading"
-                  booksOnShelf = {booksOnShelf.filter((book) => book.shelf === "currentlyReading")}
+                  title="Currently Reading"
+                  booksOnShelf={booksOnShelf.filter((book) => book.shelf === "currentlyReading")}
                   onChangeShelf={this.handleChange}
                 />
                 <BookShelf
-                  title = "Want to Read"
-                  booksOnShelf = {booksOnShelf.filter((book) => book.shelf === "wantToRead")}
+                  title="Want to Read"
+                  booksOnShelf={booksOnShelf.filter((book) => book.shelf === "wantToRead")}
                   onChangeShelf={this.handleChange}
                 />
                 <BookShelf
-                  title = "Read"
-                  booksOnShelf = {booksOnShelf.filter((book => book.shelf === "read"))}
+                  title="Read"
+                  booksOnShelf={booksOnShelf.filter((book => book.shelf === "read"))}
                   onChangeShelf={this.handleChange}
                 />
             </div>
